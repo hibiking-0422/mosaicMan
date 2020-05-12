@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  flask:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./src:/projects"
+    tty: true
+    environment:
+      TZ: Asia/Tokyo
+  app:
+    build: ./front
+    ports:
+      - 8080:8080
+    volumes:
+      - ./front:/usr/src/app
+    stdin_open: true
+    tty: true
+    command: /bin/sh
